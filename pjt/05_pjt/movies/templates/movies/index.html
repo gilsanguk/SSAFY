@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+  <div class="col-10">
+      <h1>INDEX</h1>
+      <a href="{% url 'movies:create' %}">Create</a>
+      <hr>
+      {% for movie in movies %}
+      <a href="{% url 'movies:detail' movie.pk %}">{{ movie.title }}</a>
+      <p>{{ movie.score }}</p>
+      <hr>
+      {% endfor %}
+  </div>
+</div>
+{% endblock content %}
