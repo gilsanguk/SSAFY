@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const formTag = document.createElement('form');
+    document.body.appendChild(formTag);
+
+    const inputTag = document.createElement('input');
+    const buttonTag = document.createElement('button');
+    formTag.appendChild(inputTag);
+    formTag.appendChild(buttonTag);
+    inputTag.setAttribute('type', 'text');
+    inputTag.setAttribute('placeholder', 'Enter Todo');
+    buttonTag.setAttribute('type', 'submit');
+    buttonTag.innerText = 'Add';
+
+    const ulTag = document.createElement('ul');
+    document.body.appendChild(ulTag);
+
+    const Todoapp = function (event) {
+      event.preventDefault();
+      const liTag = document.createElement('li');
+      liTag.innerText = inputTag.value;
+      ulTag.appendChild(liTag);   
+      event.target.reset();
+    };
+
+    formTag.addEventListener('submit', Todoapp);
+  </script>
+</body>
+</html>
