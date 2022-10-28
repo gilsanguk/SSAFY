@@ -1,0 +1,10 @@
+{% for article in articles %}
+  <form class="like-form" data-article-id="{{ article.pk }}">
+    {% csrf_token %}
+    {% if user in article.like_users.all %}
+      <button id="like-button-{{ article.pk }}">좋아요 취소</button>
+    {% else %}
+      <button id="like-button-{{ article.pk }}">좋아요</button>
+    {% endif %}
+  </form>
+{% endfor %}

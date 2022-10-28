@@ -35,9 +35,7 @@ function player2change() {
   change = (change + 1) % 3;
 };
 
-
 function play(event) {
-
   const player1Choice = event.target.id;
   player1.src = `./img/${player1Choice}.png`;
   const timer = setInterval(player2change, 100);
