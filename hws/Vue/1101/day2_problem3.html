@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .done{
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <h1>Todo List</h1>
+  <div id="app">
+    <input type="text" v-model.trim="inputText">
+    <button @click="addTodo">+</button>
+    <ul>
+      <li v-for="todo in todos" :key="todo.id">
+        <input type="checkbox" @click="toggleTodo(todo)">
+        <span :class="{done:todo.completed}">{{ todo.title }}</span>
+      </li>
+    </ul>
+    <button @click="deleteTodo">완료 목록 삭제</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        inputText: '',
+        todos: [
+          { title: '밥먹기', completed: false, id: new Date().getTime() },
+          { title: '코딩하기', completed: false, id: new Date().getTime() + 1 },
+          { title: '잠자기', completed: false, id: new Date().getTime() + 2 },
+        ]
+      },
+      methods: {
+        addTodo: function () {
+          if(!this.inputText) {
+            alert('내용을 입력해주세요.');
+          } else {
+            this.todos.push({ title: this.inputText, completed: false, id: new Date().getTime() });
+            this.inputText = '';
+          }
+        },
+        toggleTodo: function (todo) {
+          todo.completed = !todo.completed;
+        },
+        deleteTodo: function () {
+          this.todos = this.todos.filter(todo => !todo.completed);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

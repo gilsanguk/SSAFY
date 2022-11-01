@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1 >첫 번째 입력:{{ firstInput }}</h1>
+    <input type="text" v-model="firstInput" @input="sumInput">
+    <h1>두 번째 입력:{{ secondInput }}</h1>
+    <input type="text" v-model="secondInput" @input="sumInput">
+    <h1>합산 입력:{{ sum }}</h1>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      firstInput: '',
+      secondInput: '',
+      sum: '',
+    },
+    methods: {
+      sumInput: function() {
+        this.sum = this.firstInput + this.secondInput;
+      }
+    }
+  })
+</script>
+</html>

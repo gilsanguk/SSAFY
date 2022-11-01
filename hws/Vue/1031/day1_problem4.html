@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>점심메뉴</h1>
+    <button @click="getRandomMenu">Pick One</button>
+    <p>{{ menu }}</p>
+    <hr>
+    <h1>로또</h1>
+    <button @click="getLotto">Get Lucky Numbers</button>
+    <p v-show="isActive">{{ lotto }}</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        menu: '',
+        menus: ['짜장면', '짬뽕', '탕수육', '볶음밥', '짬뽕밥', '짜장밥'],
+        lotto: [],
+        isActive: false
+      },
+      methods: {
+        getRandomMenu: function () {
+          this.menu = '';
+          this.menu = _.sample(this.menus);
+        },
+        getLotto: function () {
+          this.isActive = true;
+          this.lotto = [];
+          const lotto = _.sampleSize(_.range(1, 46), 6);
+          this.lotto = lotto;
+        }
+      }
+    })
+  </script>
+</body>
+</html>
